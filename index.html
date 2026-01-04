@@ -9,8 +9,8 @@
 body {
   font-family: Arial, sans-serif;
   background: #fafafa;
-  padding: 20px;
   margin: 0;
+  padding: 20px;
 }
 
 h1 {
@@ -21,13 +21,13 @@ h1 {
 /* ---------------------- Galeri Container ---------------------- */
 .gallery {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Mobilde alt alta */
   gap: 20px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-/* ---------------------- Ürün Kartları ---------------------- */
+/* ---------------------- Ürün Kartı ---------------------- */
 .gallery-item {
   background: #fff;
   border-radius: 12px;
@@ -35,18 +35,20 @@ h1 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
   padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ---------------------- Resimler ---------------------- */
 .gallery-item img {
   width: 100%;
   height: auto;
-  display: block;
   object-fit: cover;
   border-radius: 12px 12px 0 0;
 }
 
-/* ---------------------- Ürün Başlığı ---------------------- */
+/* ---------------------- Başlık ---------------------- */
 .product-title {
   font-size: 1.2rem;
   font-weight: bold;
