@@ -1,11 +1,73 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Midilli Zeytinyağı Slider</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #fafafa; }
+
+    /* Slider container */
+    .slider-container {
+      position: relative;
+      max-width: 100%;
+      margin: 20px auto;
+      overflow: hidden;
+      padding: 16px 0;
+    }
+
+    /* Slider track */
+    .slider-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+    /* Slide */
+    .slide {
+      flex: 0 0 80%;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Slider buttons */
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .slider-btn.prev { left: 10px; }
+    .slider-btn.next { right: 10px; }
+
+    .slider-btn:hover { background-color: rgba(0,0,0,0.7); }
+
+    /* Desktop ayarı */
+    @media (min-width: 768px) {
+      .slide { flex: 0 0 30%; }
+    }
+  </style>
 </head>
 <body>
 
@@ -13,127 +75,49 @@
     <button class="slider-btn prev">&#10094;</button>
 
     <div class="slider-track">
-      <div class="slide"><img src="img/zeytinyagi1.jpg" alt="Midilli Zeytinyağı"></div>
-      <div class="slide"><img src="img/zeytinyagi2.jpg" alt="Soğuk Sıkım"></div>
-      <div class="slide"><img src="img/zeytinyagi3.jpg" alt="Naturel Sızma"></div>
-      <div class="slide"><img src="img/zeytinyagi4.jpg" alt="Organik"></div>
+      <div class="slide"><img src="https://picsum.photos/id/1018/800/600" alt="Midilli Zeytinyağı"></div>
+      <div class="slide"><img src="https://picsum.photos/id/1015/800/600" alt="Soğuk Sıkım"></div>
+      <div class="slide"><img src="https://picsum.photos/id/1019/800/600" alt="Naturel Sızma"></div>
+      <div class="slide"><img src="https://picsum.photos/id/1020/800/600" alt="Organik"></div>
     </div>
 
     <button class="slider-btn next">&#10095;</button>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    const track = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.slider-btn.prev');
+    const nextBtn = document.querySelector('.slider-btn.next');
+    let slideIndex = 0;
+
+    const slideWidth = () => slides[0].offsetWidth + 16; // gap dahil
+
+    // Ok butonları
+    prevBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+      track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      slideIndex = (slideIndex + 1) % slides.length;
+      track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
+    });
+
+    // Otomatik kayma
+    let autoSlide = setInterval(() => {
+      slideIndex = (slideIndex + 1) % slides.length;
+      track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
+    }, 3000);
+
+    // Otomatik kaymayı durdur / başlat (fare veya dokunma ile)
+    track.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    track.addEventListener('mouseleave', () => {
+      autoSlide = setInterval(() => {
+        slideIndex = (slideIndex + 1) % slides.length;
+        track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
-  * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #fafafa;
-}
-
-/* SLIDER CONTAINER */
-.slider-container {
-  position: relative;
-  max-width: 100%;
-  margin: 20px auto;
-  overflow: hidden;
-  padding: 16px 0;
-}
-
-/* SLIDER TRACK */
-.slider-track {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-}
-
-/* SLIDE */
-.slide {
-  flex: 0 0 80%; /* Mobilde %80 */
-  scroll-snap-align: start;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* SLIDER BUTTONS */
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.5);
-  border: none;
-  color: white;
-  font-size: 2rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 10;
-}
-
-.slider-btn.prev {
-  left: 10px;
-}
-
-.slider-btn.next {
-  right: 10px;
-}
-
-.slider-btn:hover {
-  background-color: rgba(0,0,0,0.7);
-}
-
-/* DESKTOP AYARI */
-@media (min-width: 768px) {
-  .slide {
-    flex: 0 0 30%; /* Desktop 3 kolon */
-  }
-}const track = document.querySelector('.slider-track');
-const prevBtn = document.querySelector('.slider-btn.prev');
-const nextBtn = document.querySelector('.slider-btn.next');
-
-const slides = track.querySelectorAll('.slide');
-let slideIndex = 0;
-
-const slideWidth = () => slides[0].offsetWidth + 16; // gap dahil
-
-// Ok butonları ile kaydırma
-prevBtn.addEventListener('click', () => {
-  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-  track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
-});
-
-nextBtn.addEventListener('click', () => {
-  slideIndex = (slideIndex + 1) % slides.length;
-  track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
-});
-
-// Otomatik kayma
-let autoSlide = setInterval(() => {
-  slideIndex = (slideIndex + 1) % slides.length;
-  track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
-}, 3000); // 3 saniyede bir kayar
-
-// Otomatik kaymayı durdurma (parmakla dokununca)
-track.addEventListener('mouseenter', () => clearInterval(autoSlide));
-track.addEventListener('mouseleave', () => {
-  autoSlide = setInterval(() => {
-    slideIndex = (slideIndex + 1) % slides.length;
-    track.scrollTo({ left: slideWidth() * slideIndex, behavior: 'smooth' });
-  }, 3000);
-});
