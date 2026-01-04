@@ -6,19 +6,28 @@
 <title>Midilli Zeytinyağı Ürünler</title>
 <style>
 /* ---------------------- Genel ---------------------- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background: #fafafa; padding: 20px; }
+body {
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+  padding: 20px;
+  margin: 0;
+}
 
-/* ---------------------- Gallery Container ---------------------- */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ---------------------- Galeri Container ---------------------- */
 .gallery {
-  display: grid;
-  grid-template-columns: 1fr; /* Mobilde tek kolon */
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
-/* ---------------------- Her Ürün Kartı ---------------------- */
+/* ---------------------- Ürün Kartları ---------------------- */
 .gallery-item {
   background: #fff;
   border-radius: 12px;
@@ -27,75 +36,14 @@ body { font-family: Arial, sans-serif; background: #fafafa; padding: 20px; }
   text-align: center;
   padding-bottom: 16px;
 }
-<style>
 
-/* —— 1) Responsive tüm ürün görselleri —— */
-img {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  object-fit: cover !important;
-}
-
-/* —— 2) Ürün kartları düzgün grid olsun —— */
-.features {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
-  gap: 20px !important;
-  padding: 0 !important;
-  margin: 0 auto !important;
-}
-
-/* Ürün kartı içi hizalama */
-.features > * {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-/* Kart içi başlık/fiyat/button hizalama */
-.features h3,
-.features p,
-.features a {
-  text-align: center !important;
-  width: 100% !important;
-}
-
-/* WhatsApp butonu daha düzgün görünür */
-.features a {
-  display: inline-block !important;
-  background: #25D366 !important;
-  color: white !important;
-  padding: 10px 16px !important;
-  border-radius: 24px !important;
-  text-decoration: none !important;
-  margin-top: 10px !important;
-  font-weight: bold !important;
-}
-
-.features a:hover {
-  background: #1ebe57 !important;
-}
-
-/* —— 3) Mobil ve Desktop düzeni —— */
-@media (max-width: 600px) {
-  .features {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (min-width: 601px) {
-  .features {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-</style>
-/* ---------------------- Fotoğraf ---------------------- */
+/* ---------------------- Resimler ---------------------- */
 .gallery-item img {
-  width: 100% !important;      /* Taşmayı engelle */
-  height: auto !important;     /* Oran bozulmasın */
+  width: 100%;
+  height: auto;
   display: block;
-  object-fit: cover !important; /* Büyük resim kırpılır ama taşmaz */
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
 }
 
 /* ---------------------- Ürün Başlığı ---------------------- */
@@ -120,7 +68,7 @@ img {
   padding: 10px 20px;
   border-radius: 25px;
   text-decoration: none;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-weight: bold;
   transition: background 0.3s;
 }
@@ -129,13 +77,27 @@ img {
   background-color: #1ebe57;
 }
 
-/* ---------------------- Desktop Grid ---------------------- */
-@media (min-width: 768px) {
+/* ---------------------- Responsive ---------------------- */
+@media (min-width: 600px) {
   .gallery {
-    grid-template-columns: repeat(2, 1fr); /* Masaüstü 2 kolon */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .gallery-item {
+    flex: 0 0 calc(50% - 10px);
   }
   .gallery-item img {
-    max-height: 400px; /* İsteğe bağlı maksimum yükseklik */
+    max-height: 300px;
+  }
+}
+
+@media (min-width: 900px) {
+  .gallery-item {
+    flex: 0 0 calc(33.33% - 13px);
+  }
+  .gallery-item img {
+    max-height: 250px;
   }
 }
 </style>
@@ -184,4 +146,4 @@ img {
 </section>
 
 </body>
-     </html>
+</html>
