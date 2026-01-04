@@ -3,4 +3,4 @@
 Midilli Zeytinyağı için basit tanıtım sitesi.
 
 ## Canlı Demo
-https://kullaniciadi.github.io/repo-adi/
+https://midillizeytinyagii.github.io/Midilli-Zeytinyagi/
