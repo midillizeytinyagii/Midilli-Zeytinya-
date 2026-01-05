@@ -74,7 +74,7 @@
         text-align:center;
     }
     .product-item:hover { transform:translateY(-2px) scale(1.02); box-shadow:0 5px 12px rgba(0,0,0,0.2); }
-    .product-item img { width:100%; border-radius:8px; margin-bottom:6px; }
+    .product-image { width:100%; border-radius:8px; margin-bottom:6px; }
 
     .product-name { font-weight:bold; font-size:1.05em; margin:3px 0; }
     .product-desc { font-size:0.82em; color:#2e4d2e; margin:3px 0; }
@@ -102,22 +102,22 @@
     .order-btn:hover { transform: translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.3); }
 
     /* ÜRETİM GALERİSİ (BAĞIMSIZ) */
-    .production-gallery { padding:40px 12px; text-align:center; }
-    .production-gallery h2 { font-size:1.8em; margin-bottom:20px; }
+    .production-gallery { padding:50px 12px; text-align:center; }
+    .production-gallery h2 { font-size:1.9em; margin-bottom:25px; }
 
     .gallery-slider {
         display:flex;
         overflow-x:auto;
-        gap:15px;
-        padding-bottom:10px;
+        gap:20px;
+        padding-bottom:15px;
         scroll-behavior: smooth;
     }
-    .gallery-slider::-webkit-scrollbar { height:8px; }
+    .gallery-slider::-webkit-scrollbar { height:10px; }
     .gallery-slider::-webkit-scrollbar-thumb { background-color: rgba(46,77,46,0.5); border-radius:4px; }
 
     .gallery-item {
-        min-width:200px;
-        height:150px;
+        min-width:250px;
+        height:180px;
         background-color:#e6f4ea;
         border-radius:10px;
         display:flex;
@@ -162,7 +162,7 @@
         .hero-logo { height:40px; top:8px; right:8px; }
         .product-info { flex-direction: column; align-items:flex-start; }
         .order-btn { width:100%; text-align:center; }
-        .gallery-item { min-width:150px; height:120px; font-size:0.9em; }
+        .gallery-item { min-width:180px; height:140px; font-size:0.9em; }
     }
 </style>
 </head>
@@ -186,7 +186,7 @@
     </div>
 </section>
 
-<!-- ÜRETİM GALERİSİ (BAĞIMSIZ) -->
+<!-- ÜRETİM GALERİSİ (BAĞIMSIZ, BÜYÜK) -->
 <section class="production-gallery" id="uretim">
   <h2>Üretimimizden Kareler</h2>
   <div class="gallery-slider">
@@ -203,7 +203,16 @@
 <section class="products" id="urunler">
     <h2>Ürünlerimiz</h2>
     <div class="product-list">
-        <!-- Ürünler 1-8 buraya önceki koddaki gibi eklenebilir -->
+        <!-- ÖRNEK ÜRÜN -->
+        <div class="product-item">
+            <img src="IMG-20260105-WA0002.jpg" alt="Yeni Sezon 5 LT" class="product-image">
+            <div class="product-name">Yeni Sezon İLK Hasat Naturel Sızma Zeytinyağı 5 LT</div>
+            <div class="product-info">
+                <div class="price">1.750 TL</div>
+                <a href="https://wa.me/905074398097" target="_blank" class="order-btn">Sipariş Ver</a>
+            </div>
+        </div>
+        <!-- Diğer ürünleri aynı şekilde ekleyebilirsin -->
     </div>
 </section>
 
