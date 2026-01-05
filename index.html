@@ -5,182 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Midilli Zeytinyağı</title>
     <style>
-        /* Genel stil ve reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0fff4;
-            color: #2e4d2e;
-            line-height: 1.6;
-        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: 'Arial', sans-serif; background-color: #f0fff4; color:#2e4d2e; line-height:1.6; }
 
-        /* Parallax giriş */
+        /* Sabit navbar */
+        header {
+            position: fixed;
+            top:0;
+            left:0;
+            width:100%;
+            display:flex; 
+            align-items:center; 
+            justify-content:space-between; 
+            padding:15px 30px; 
+            background-color:rgba(255,255,255,0.95); 
+            box-shadow:0 3px 8px rgba(0,0,0,0.1);
+            z-index:1000;
+        }
+        .logo { height:50px; }
+        nav a { margin-left:20px; color:#2e4d2e; text-decoration:none; font-weight:bold; transition:0.3s; }
+        nav a:hover { color:#4caf50; }
+
+        /* Hero */
         .hero {
-            position: relative;
-            height: 100vh;
-            background-image: url('IMG-20260104-WA0006.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            position:relative;
+            height:100vh;
+            background-image:url('IMG-20260104-WA0006.jpg');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            margin-top:80px; /* navbar yüksekliği */
         }
-
         .hero-text {
-            background-color: rgba(46, 77, 46, 0.6);
-            padding: 30px 20px;
-            border-radius: 15px;
+            background-color: rgba(46,77,46,0.6);
+            padding:30px 20px;
+            border-radius:15px;
             animation: fadeIn 2s ease-in-out;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
         }
+        .hero-text h1 { font-size:3em; color:#fff; margin-bottom:10px; }
+        .hero-text p { font-size:1.5em; color:#e0f2f1; }
 
-        .hero-text h1 {
-            font-size: 3em;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .hero-text p {
-            font-size: 1.5em;
-            color: #e0f2f1;
-        }
-
-        @keyframes fadeIn {
-            from {opacity: 0; transform: translateY(-20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-
-        /* Butonlar */
-        .buttons {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .buttons a {
-            color: white;
-            text-decoration: none;
-            padding: 15px 25px;
-            margin: 10px;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-        }
-
-        /* WhatsApp butonu */
-        .whatsapp-btn {
-            background: linear-gradient(135deg, #25D366, #1ebe5d);
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        /* Instagram butonu */
-        .instagram-btn {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-        }
-
-        .instagram-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+        @keyframes fadeIn { from {opacity:0; transform:translateY(-20px);} to {opacity:1; transform:translateY(0);} }
 
         /* Ürünler */
-        .products {
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .products h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-        }
-
+        .products { padding:50px 20px; text-align:center; }
+        .products h2 { font-size:2.5em; margin-bottom:30px; }
+        .product-list { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px; }
         .product-item {
-            background-color: #e6f4ea;
-            padding: 15px;
-            border-radius: 15px;
+            background-color:#e6f4ea; padding:15px; border-radius:15px;
+            transition: transform 0.3s, box-shadow 0.3s; 
         }
+        .product-item:hover { transform:translateY(-5px) scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
+        .product-item img { width:100%; border-radius:12px; margin-bottom:10px; }
 
         /* Footer */
-        footer {
-            background-color: #2e4d2e;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
+        footer { background-color:#2e4d2e; color:white; text-align:center; padding:20px 0; margin-top:20px; }
+        footer img { height:30px; vertical-align:middle; margin-right:10px; }
+        footer a { color:#a5d6a7; text-decoration:none; font-weight:bold; transition:0.3s; }
+        footer a:hover { color:#e0f2f1; }
+
+        /* WhatsApp sabit buton */
+        .whatsapp-fixed {
+            position: fixed;
+            bottom:20px;
+            right:20px;
+            background:#25D366;
+            color:white;
+            padding:15px 20px;
+            border-radius:50px;
+            font-weight:bold;
+            text-decoration:none;
+            box-shadow:0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index:1001;
+        }
+        .whatsapp-fixed:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
-        footer a {
-            color: #a5d6a7;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* Mobil uyumlu başlık */
-        @media (max-width: 600px) {
-            .hero-text h1 {
-                font-size: 2em;
-            }
-            .hero-text p {
-                font-size: 1em;
-            }
+        @media(max-width:600px){
+            .hero-text h1{ font-size:2em; }
+            .hero-text p{ font-size:1em; }
+            header { flex-direction:column; gap:10px; padding:10px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Giriş bölümü -->
-    <header class="hero">
+    <!-- Sabit Navbar -->
+    <header>
+        <img src="logo.png" alt="Midilli Zeytinyağı Logo" class="logo">
+        <nav>
+            <a href="#urunler">Ürünler</a>
+            <a href="#iletisim">İletişim</a>
+            <a href="https://www.instagram.com/midillizeytinyagii/" target="_blank">Instagram</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
         <div class="hero-text">
             <h1>Midilli Zeytinyağı</h1>
             <p>İzmir Tire'nin bereketli topraklarından gelen doğal lezzetler</p>
         </div>
-    </header>
+    </section>
 
-    <!-- Butonlar -->
-    <div class="buttons">
-        <a href="https://wa.me/905074398097" target="_blank" class="whatsapp-btn">WhatsApp'tan Sipariş Ver</a>
-        <a href="https://www.instagram.com/midillizeytinyagii/" target="_blank" class="instagram-btn">Instagram'da Takip Et</a>
-    </div>
-
-    <!-- Ürünler bölümü -->
-    <section class="products">
+    <!-- Ürünler -->
+    <section class="products" id="urunler">
         <h2>Ürünlerimiz</h2>
         <div class="product-list">
             <div class="product-item">
-                <h3>Ürün 1</h3>
-                <p>Ürün açıklaması burada olacak.</p>
+                <img src="urun1.jpg" alt="Sızma Zeytinyağı 500ml">
+                <h3>Sızma Zeytinyağı 500ml</h3>
+                <p>Doğal ve soğuk sıkım zeytinyağı ile yemeklerinize lezzet katın.</p>
+                <div style="margin:10px 0; font-weight:bold; color:#2e4d2e; background-color:#a5d6a7; padding:5px 10px; border-radius:8px;">₺120</div>
+                <a href="https://wa.me/905074398097" target="_blank" class="whatsapp-fixed" style="position:static; margin-top:5px;">Sipariş Ver</a>
             </div>
+
             <div class="product-item">
-                <h3>Ürün 2</h3>
-                <p>Ürün açıklaması burada olacak.</p>
+                <img src="urun2.jpg" alt="Organik Zeytinyağı 1L">
+                <h3>Organik Zeytinyağı 1L</h3>
+                <p>Tamamen organik, sertifikalı zeytinyağı ile sağlıklı beslenin.</p>
+                <div style="margin:10px 0; font-weight:bold; color:#2e4d2e; background-color:#a5d6a7; padding:5px 10px; border-radius:8px;">₺220</div>
             </div>
+
             <div class="product-item">
-                <h3>Ürün 3</h3>
-                <p>Ürün açıklaması burada olacak.</p>
+                <img src="urun3.jpg" alt="Doğal Zeytin Ezmesi 250g">
+                <h3>Doğal Zeytin Ezmesi 250g</h3>
+                <p>Kahvaltılarınız için doğal ve katkısız zeytin ezmesi.</p>
+                <div style="margin:10px 0; font-weight:bold; color:#2e4d2e; background-color:#a5d6a7; padding:5px 10px; border-radius:8px;">₺80</div>
             </div>
         </div>
     </section>
 
+    <!-- Sabit WhatsApp butonu -->
+    <a href="https://wa.me/905074398097" target="_blank" class="whatsapp-fixed">WhatsApp Sipariş</a>
+
     <!-- Footer -->
-    <footer>
-        &copy; 2026 Midilli Zeytinyağı | <a href="https://wa.me/905074398097" target="_blank">WhatsApp'tan Sipariş</a> | <a href="https://www.instagram.com/midillizeytinyagii/" target="_blank">Instagram'da Takip Et</a>
+    <footer id="iletisim">
+        <img src="logo.png" alt="Logo"> &copy; 2026 Midilli Zeytinyağı | <a href="https://wa.me/905074398097" target="_blank">WhatsApp</a> | <a href="https://www.instagram.com/midillizeytinyagii/" target="_blank">Instagram</a>
     </footer>
 
 </body>
-</html>
+    </html>
